@@ -1,4 +1,12 @@
+# Ignore
 __pycache__
 env
 .vscode
 AnalyseRepo.py
+exp.ipynb
+exp-checkpoint.ipynb
+dataset.csv
+dataset-checkpoint.csv
+visual.ipynb
+Untitled-checkpoint.ipynb
+scratch.txt
