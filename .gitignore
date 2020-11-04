@@ -5,6 +5,7 @@ env
 AnalyseRepo.py
 exp.ipynb
 exp-checkpoint.ipynb
+visual-checkpoint.ipynb
 dataset.csv
 dataset-checkpoint.csv
 visual.ipynb
