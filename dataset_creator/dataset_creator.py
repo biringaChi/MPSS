@@ -3,11 +3,10 @@ import os
 import argparse
 import csv
 
-# Usage: dataset_creator.py [-h] [-v VERSION] [-H HASH] [-b BUILD] [-t TEST]
-
 # Step 1: Call "create_csv_file" method without argument  
-# Step 2: comment out "create_csv_file" method
-# Step 3: Call "populate_csv_file" with argument
+# Step 2: Comment out "create_csv_file" method
+# Step 3: Call "populate_csv_file" with argument 
+# Usage: dataset_creator.py [-h] [-v VERSION] [-H HASH] [-b BUILD] [-t TEST]
 
 parser = argparse.ArgumentParser(description = "Creates datasets")
 parser.add_argument("-v", "--version", help = "Repository version")
