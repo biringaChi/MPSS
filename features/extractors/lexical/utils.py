@@ -1,4 +1,3 @@
-
 # A set of java keywords
 java_keywords = {"abstract", "assert", "boolean", "break", "byte", "case", "catch", "char", 
 				 "class", "const*", "**", "***", "****", "continue", "default", "do", "double",
@@ -8,11 +7,11 @@ java_keywords = {"abstract", "assert", "boolean", "break", "byte", "case", "catc
 				 "strictfp**", "super", "switch", "synchronized", "this", "throw", "throws",
 				 "transient", "try", "void", "volatile", "while"}
 
-
 # Comments pattern
-single_line_comments_patten = "//.*"
-multiple_line_comments_pattern = "/\*(.|[\r\n])*?\*/"
-comments_pattern = "/\*(.|[\r\n])*?\*/|//.*" # combined 
+comments_pattern = "/\*(.|[\r\n])*?\*/|//.*" 
+
+# Method pattern 
+methods_pattern = "(public|private|protected|static|\s) +[\w\<\>\[\]]+\s+(\w+) *\([^\)]*\) *(\{?|[^;])"
 
 
 
