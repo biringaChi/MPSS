@@ -5,7 +5,7 @@ import re
 from math import floor, log10
 
 class CommentsExtractor(ProcessData):
-	"""Extracts frequency of keywords"""
+	"""Extracts frequency of comments"""
 	def __init__(self) -> None:
 		super().__init__()
 		self.comments_pattern = comments_pattern
