@@ -20,7 +20,7 @@ class KeywordExtractor(ProcessData):
 		keyword_frequency = []
 		for file in self.process():
 			temp = [word for word in file.split() if word in self.java_keywords]
-			keyword_frequency.append(len(temp))
+			keyword_frequency.append(self.__len__(temp))
 		return keyword_frequency
 	
 	def extract_keywords(self) -> List[int]:
