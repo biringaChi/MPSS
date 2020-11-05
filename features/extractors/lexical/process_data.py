@@ -9,6 +9,9 @@ class ProcessData:
 		
 	def __repr__(self) -> str:
 		return f"{self.__class__.__name__}(self.path)"
+	
+	def __len__(self, value):
+		return len(value)
 
 	def process(self) -> List[int]:
 		dataset = pd.read_csv(self.path)
