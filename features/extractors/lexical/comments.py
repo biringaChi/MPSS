@@ -1,8 +1,8 @@
 from utils import comments_pattern
 from  process_data import ProcessData
 from typing import List
-import re
 from math import floor, log10
+import re 
 
 class CommentsExtractor(ProcessData):
 	"""Extracts frequency of comments"""
@@ -20,7 +20,7 @@ class CommentsExtractor(ProcessData):
 		comments_frequency = []
 		for file in self.process():
 			temp = re.findall(comments_pattern, file)
-			comments_frequency.append(len(temp))
+			comments_frequency.append(self.__len__(temp))
 		return comments_frequency
 
 	def extract_comments(self) -> List[int]:
