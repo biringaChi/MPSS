@@ -19,4 +19,3 @@ class ProcessData:
 	
 	def get_character_frequency(self) -> List[int]:
 		return [len(file) for file in self.process()]
-	
