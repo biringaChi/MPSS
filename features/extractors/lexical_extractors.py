@@ -1,5 +1,3 @@
-import os
-import sys
 from typing import List
 import pandas as pd
 import utils as ut
@@ -13,18 +11,13 @@ class KeywordExtractor:
 		self.java_keywords = ut.java_keywords
 
 	def process_data(self) -> List[int]:
-		# Reads in our dataset and extracts sourcecode column
 		dataset = pd.read_csv(f"{self.path}/dataset.csv")
-		source_code = [file for file in dataset["sourcecode"]]
-		return source_code
+		return [file for file in dataset["sourcecode"]]
 
 	def get_character_frequency(self) -> List[int]:
-		# gets the frequency of characters
-		character_frequency = [len(file) for file in self.process_data()]
-		return character_frequency
+		return [len(file) for file in self.process_data()]
 	
 	def get_keyword_frequency(self) -> List[int]:
-		# gets the frequency of keywords
 		keyword_frequency = []
 		for file in self.process_data():
 			temp = [word for word in file.split() if word in self.java_keywords]
@@ -32,11 +25,15 @@ class KeywordExtractor:
 		return keyword_frequency
 	
 	def extract_keywords(self) -> List[int]:
-		# extract keyword features
 		lexical_features = []
 		for cf, kf in zip(self.get_character_frequency(), self.get_keyword_frequency()):
 			lexical_features.append(floor(log(cf / kf)))
 		return lexical_features
+
+
+class TernaryExtractor:
+	""""Extracts frequency of ternary operators"""
+	pass
 
 
 if __name__ == "__main__":

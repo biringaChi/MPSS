@@ -3,11 +3,8 @@ __pycache__
 env
 .vscode
 AnalyseRepo.py
-exp.ipynb
-exp-checkpoint.ipynb
 visual-checkpoint.ipynb
 dataset.csv
 dataset-checkpoint.csv
 visual.ipynb
-Untitled-checkpoint.ipynb
 scratch.txt
