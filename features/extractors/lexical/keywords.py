@@ -11,8 +11,7 @@ parser = argparse.ArgumentParser(description = "Creates keywords features")
 parser.add_argument("-p", "--path", help = "Dataset path")
 args = parser.parse_args()
 
-
-class KeywordExtractor:
+class KeywordExtractor(ProcessData):
 	"""Extracts frequency of keywords"""
 	def __init__(self, path) -> None:
 		self.java_keywords = ut.java_keywords
@@ -39,5 +38,4 @@ class KeywordExtractor:
 
 
 if __name__ == "__main__":
-	le = KeywordExtractor(args.path)
-	le.extract_keywords()
+	KeywordExtractor(args.path).extract_keywords()
