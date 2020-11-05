@@ -4,6 +4,7 @@ from typing import List
 from math import floor, log10
 import re 
 
+
 class MethodsExtractor(ProcessData):
 	"""Extracts frequency of methods"""
 	def __init__(self) -> None:

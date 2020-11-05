@@ -4,6 +4,7 @@ from typing import List
 from math import floor, log10
 import re 
 
+
 class CommentsExtractor(ProcessData):
 	"""Extracts frequency of comments"""
 	def __init__(self) -> None:
@@ -31,6 +32,7 @@ class CommentsExtractor(ProcessData):
 			except ZeroDivisionError:
 				comments_features.append(0)
 		return comments_features
+
 
 if __name__ == "__main__":
 	CommentsExtractor().extract_comments()
