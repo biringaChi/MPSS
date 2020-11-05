@@ -7,3 +7,12 @@ java_keywords = {"abstract", "assert", "boolean", "break", "byte", "case", "catc
 				 "new", "package", "private", "protected", "public", "return", "short", "static",
 				 "strictfp**", "super", "switch", "synchronized", "this", "throw", "throws",
 				 "transient", "try", "void", "volatile", "while"}
+
+
+# Comments pattern
+single_line_comments_patten = "//.*"
+multiple_line_comments_pattern = "/\*(.|[\r\n])*?\*/"
+comments_pattern = "/\*(.|[\r\n])*?\*/|//.*" # combined 
+
+
+
