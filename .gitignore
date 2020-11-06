@@ -1,10 +1,9 @@
 # Ignore
 __pycache__
-env
+.venv
 .vscode
 AnalyseRepo.py
 visual-checkpoint.ipynb
 dataset.csv
 dataset-checkpoint.csv
-visual.ipynb
 scratch.txt
