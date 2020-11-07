@@ -16,10 +16,9 @@ class ProcessData:
 
 	@property
 	def _get_data_path(self) -> str:
-		walk_up = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-		subfolders = [subs.path for subs in os.scandir(walk_up) if subs.is_dir()]
-		data_file_path = os.path.join([subs.path for subs in os.scandir(walk_up) if subs.is_dir()][-1], os.listdir(subfolders[-1])[-1])
-		return data_file_path
+		_walk_up = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+		_subfolders = [subs.path for subs in os.scandir(_walk_up) if subs.is_dir()]
+		return os.path.join([subs.path for subs in os.scandir(_walk_up) if subs.is_dir()][-1], os.listdir(_subfolders[-1])[-1])
 
 	@property
 	def sourcecode(self) -> List[int]:
