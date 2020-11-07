@@ -5,14 +5,11 @@ from typing import List
 
 class ProcessData:
 	"""Processes data from dataset file"""
-	def __init__(self) -> None:
-		pass
+	def __init__(self) -> None: pass
+
+	def __repr__(self) -> str: return f"{self.__class__.__name__}"
 	
-	def __repr__(self) -> str:
-		return f"{self.__class__.__name__}(self.path)"
-	
-	def __len__(self, value):
-		return len(value)
+	def __len__(self, value) -> int: return len(value)
 
 	@property
 	def _get_data_path(self) -> str:
