@@ -14,11 +14,9 @@ class MethodsExtractor(ProcessData):
 		super().__init__()
 		self.methods_pattern = methods_pattern
 
-	def __repr__(self) -> str:
-		return f"Class: {self.__class__.__name__}"
+	def __repr__(self) -> str: return f"Class: {self.__class__.__name__}"
 	
-	def __str__(self) -> str:
-		return f"Methods Regex: {self.methods_pattern}"
+	def __str__(self) -> str: return f"Methods Regex: {self.methods_pattern}"
 	
 	@property
 	def get_methods_frequency(self) -> List[int]:
@@ -39,4 +37,4 @@ class MethodsExtractor(ProcessData):
 
 
 if __name__ == "__main__":
-	print(MethodsExtractor().extract_methods())
+	MethodsExtractor().extract_methods()
