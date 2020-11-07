@@ -13,11 +13,9 @@ class KeywordExtractor(ProcessData):
 		super().__init__()
 		self.java_keywords = java_keywords
 	
-	def __repr__(self) -> str:
-		return f"Class: {self.__class__.__name__}"
+	def __repr__(self) -> str: return f"Class: {self.__class__.__name__}"
 
-	def __str__(self) -> str:
-		return f"Java keywords: {self.java_keywords}"
+	def __str__(self) -> str: return f"Java keywords: {self.java_keywords}"
 
 	@property
 	def get_keyword_frequency(self) -> List[int]:
