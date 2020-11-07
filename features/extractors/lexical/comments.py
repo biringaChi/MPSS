@@ -1,8 +1,11 @@
-from utils import comments_pattern
-from  process_data import ProcessData
+import os
+import sys
+import _specify_dir
+import re 
+from features.extractors.utils import comments_pattern
+from features.extractors.process_data import ProcessData
 from typing import List
 from math import floor, log10
-import re 
 
 
 class CommentsExtractor(ProcessData):
@@ -17,16 +20,17 @@ class CommentsExtractor(ProcessData):
 	def __str__(self) -> str:
 		return f"Comments Regex: {self.comments_pattern}"
 	
+	@property
 	def get_comments_frequency(self) -> List[int]:
 		comments_frequency = []
-		for file in self.process():
+		for file in self.sourcecode:
 			temp = re.findall(comments_pattern, file)
 			comments_frequency.append(self.__len__(temp))
 		return comments_frequency
 
 	def extract_comments(self) -> List[int]:
 		comments_features = []
-		for cf, cmf in zip(self.get_character_frequency(), self.get_comments_frequency()):
+		for cf, cmf in zip(self.get_character_frequency, self.get_comments_frequency):
 			try:
 				comments_features.append(floor(log10(cf / cmf)))
 			except ZeroDivisionError:
