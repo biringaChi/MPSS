@@ -21,10 +21,10 @@ class ProcessData:
 		return os.path.join([subs.path for subs in os.scandir(_walk_up) if subs.is_dir()][-1], os.listdir(_subfolders[-1])[-1])
 
 	@property
-	def sourcecode(self) -> List[int]:
-		dataset = pd.read_csv(self._get_data_path)
-		return [file for file in dataset["sourcecode"]]
+	def get_sourcecode(self) -> List[int]:
+		data = pd.read_csv(self._get_data_path)
+		return [file for file in data.iloc[:, 2]]
 	
 	@property
 	def get_character_frequency(self) -> List[int]:
-		return [len(file) for file in self.sourcecode]
+		return [len(file) for file in self.get_sourcecode]

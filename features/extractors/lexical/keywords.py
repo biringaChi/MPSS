@@ -22,7 +22,7 @@ class KeywordExtractor(ProcessData):
 	@property
 	def get_keyword_frequency(self) -> List[int]:
 		keyword_frequency = []
-		for file in self.sourcecode:
+		for file in self.get_sourcecode:
 			temp = [word for word in file.split() if word in self.java_keywords]
 			keyword_frequency.append(self.__len__(temp))
 		return keyword_frequency

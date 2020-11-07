@@ -23,7 +23,7 @@ class CommentsExtractor(ProcessData):
 	@property
 	def get_comments_frequency(self) -> List[int]:
 		comments_frequency = []
-		for file in self.sourcecode:
+		for file in self.get_sourcecode:
 			temp = re.findall(comments_pattern, file)
 			comments_frequency.append(self.__len__(temp))
 		return comments_frequency

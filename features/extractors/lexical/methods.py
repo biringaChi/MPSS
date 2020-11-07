@@ -23,7 +23,7 @@ class MethodsExtractor(ProcessData):
 	@property
 	def get_methods_frequency(self) -> List[int]:
 		methods_frequency = []
-		for file in self.sourcecode:
+		for file in self.get_sourcecode:
 			temp = re.findall(methods_pattern, file)
 			methods_frequency.append(self.__len__(temp))
 		return methods_frequency
@@ -39,4 +39,4 @@ class MethodsExtractor(ProcessData):
 
 
 if __name__ == "__main__":
-	MethodsExtractor().extract_methods()
+	print(MethodsExtractor().extract_methods())
