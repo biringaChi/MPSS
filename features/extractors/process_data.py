@@ -1,5 +1,4 @@
 import os
-import sys
 import pandas as pd
 from typing import List
 
@@ -14,20 +13,34 @@ class ProcessData:
     def __len__(self, value) -> int: return len(value)
 
     @property
-    def _get_data_path(self) -> str:
+    def _get_data_dir(self) -> str:
         _walk_up = os.path.join(os.path.dirname(
             os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-        _subfolders = [subs.path for subs in os.scandir(
-            _walk_up) if subs.is_dir()]
-        _data_path = os.path.join([subs.path for subs in os.scandir(
-            _walk_up) if subs.is_dir()][-1], os.listdir(_subfolders[-1])[-1])
-        return _data_path
+        try:
+            _subfolders = [subs.path for subs in os.scandir(
+                _walk_up) if subs.is_dir()]
+            _data_dir = os.path.join([subs.path for subs in os.scandir(
+                _walk_up) if subs.is_dir()][-1], os.listdir(_subfolders[-1])[-1])
+            return _data_dir
+        except OSError as e:
+            raise(e)
 
     @property
     def get_sourcecode(self) -> List[int]:
-        data = pd.read_csv(self._get_data_path)
-        return [file for file in data.iloc[:, 2]]
+        try:
+            data = pd.read_csv(self._get_data_dir)
+            return [file for file in data.iloc[:, 2]]
+        except IOError as e:
+            raise(e)
 
     @property
     def get_character_frequency(self) -> List[int]:
-        return [len(file) for file in self.get_sourcecode]
+        return [self.__len__(file) for file in self.get_sourcecode]
+
+    @property
+    def get_word_frequency(self) -> List[int]:
+        word_freq = []
+        for file in self.get_sourcecode:
+            word_freq.append(self.__len__(
+                [line for line in file.split() if line.strip()]))
+        return word_freq

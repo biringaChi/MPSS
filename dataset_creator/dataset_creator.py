@@ -49,7 +49,7 @@ class DatasetCreator:
                                                  "build": self.build,
                                                  "test": self.test
                                                  })
-                    except Exception as e:
+                    except OSError as e:
                         print(e)
                         continue
 

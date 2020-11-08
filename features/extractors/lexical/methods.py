@@ -1,11 +1,9 @@
-import os
-import sys
 import re
 import _specify_dir
-from features.extractors.utils import methods_pattern
-from features.extractors.process_data import ProcessData
 from typing import List
 from math import floor, log10
+from features.extractors.utils import patterns
+from features.extractors.process_data import ProcessData
 
 
 class MethodsExtractor(ProcessData):
@@ -13,7 +11,7 @@ class MethodsExtractor(ProcessData):
 
     def __init__(self) -> None:
         super().__init__()
-        self.methods_pattern = methods_pattern
+        self.methods_pattern = patterns["methods_pattern"]
 
     def __repr__(self) -> str: return f"Class: {self.__class__.__name__}"
 
@@ -23,15 +21,15 @@ class MethodsExtractor(ProcessData):
     def get_methods_frequency(self) -> List[int]:
         methods_frequency = []
         for file in self.get_sourcecode:
-            temp = re.findall(methods_pattern, file)
+            temp = re.findall(self.methods_pattern, file)
             methods_frequency.append(self.__len__(temp))
         return methods_frequency
 
     def extract_methods(self) -> List[int]:
         methods_features = []
-        for cf, mf in zip(self.get_character_frequency, self.get_methods_frequency):
+        for char_freq, method_freq in zip(self.get_character_frequency, self.get_methods_frequency):
             try:
-                methods_features.append(floor(log10(cf / mf)))
+                methods_features.append(floor(log10(char_freq / method_freq)))
             except ZeroDivisionError:
                 methods_features.append(0)
         return methods_features
