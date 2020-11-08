@@ -14,8 +14,7 @@ class NgramExtractor(ProcessData):
         super().__init__()
         self.ngram = n
 
-    def __repr__(self) -> str:
-        return f"Class: {self.__class__.__name__}"
+    def __repr__(self) -> str: return f"Class: {self.__class__.__name__}"
 
     def extract_ngrams(self) -> List[str]:
         ngrams_ex = []
