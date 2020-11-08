@@ -1,10 +1,8 @@
-import os
-import sys
 import _specify_dir
-from features.extractors.process_data import ProcessData
-from features.extractors.utils import java_keywords
 from typing import List
 from math import floor, log10
+from features.extractors.utils import java_keywords
+from features.extractors.process_data import ProcessData
 
 
 class KeywordExtractor(ProcessData):

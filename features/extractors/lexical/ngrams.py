@@ -1,12 +1,10 @@
-import os
-import sys
 import _specify_dir
-from features.extractors.process_data import ProcessData
-from typing import List
-from math import floor, log10
-import nltk
-from nltk.util import ngrams
 from nltk.tokenize import word_tokenize
+from nltk.util import ngrams
+import nltk
+from math import floor, log10
+from typing import List
+from features.extractors.process_data import ProcessData
 
 
 class NgramExtractor(ProcessData):
@@ -20,12 +18,20 @@ class NgramExtractor(ProcessData):
         return f"Class: {self.__class__.__name__}"
 
     def extract_ngrams(self) -> List[str]:
-        ngrams = []
+        ngrams_ex = []
         for file in self.get_sourcecode:
-            n_gram = ngrams(word_tokenize(file), self.ngram)
-            ngrams.append([''.join(grams) for grams in n_gram])
-        return ngrams
+            n_gram = ngrams(nltk.word_tokenize(file), self.ngram)
+            ngrams_ex.append([''.join(grams) for grams in n_gram])
+        return ngrams_ex
 
 
 if __name__ == "__main__":
-    NgramExtractor.extract_ngrams(1)
+    result = NgramExtractor(1).extract_ngrams()
+    print(result[0])
+
+
+class TF_IDF(NgramExtractor):
+    """Extracts TF-IDF"""
+
+    def __init__(self, n) -> None:
+        super().__init__(n)
