@@ -16,8 +16,6 @@ class SpaceTabs(DataPrep):
 
     def __repr__(self) -> str: return f"Class: {self.__class__.__name__}"
 
-    def __str__(self) -> str: return f"Space Regex: {self.space_pattern}"
-
     @property
     def get_space_frequency(self) -> List[int]:
         space_frequency = []

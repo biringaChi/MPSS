@@ -15,8 +15,6 @@ class MethodsExtractor(DataPrep):
 
     def __repr__(self) -> str: return f"Class: {self.__class__.__name__}"
 
-    def __str__(self) -> str: return f"Methods Regex: {self.methods_pattern}"
-
     @property
     def get_methods_frequency(self) -> List[int]:
         methods_frequency = []

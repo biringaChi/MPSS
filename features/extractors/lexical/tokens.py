@@ -15,8 +15,6 @@ class WordToken(DataPrep):
 
     def __repr__(self) -> str: return f"Class: {self.__class__.__name__}"
 
-    def __str__(self) -> str: return f"Java keywords: {self.word_pattern}"
-
     @property
     def get_word_tokens(self) -> List[int]:
         tokens = []

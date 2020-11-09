@@ -15,8 +15,6 @@ class CommentsExtractor(DataPrep):
 
     def __repr__(self) -> str: return f"Class: {self.__class__.__name__}"
 
-    def __str__(self) -> str: return f"Comments Regex: {self.comments_pattern}"
-
     @property
     def get_comments_frequency(self) -> List[int]:
         comments_frequency = []

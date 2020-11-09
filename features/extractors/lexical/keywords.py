@@ -14,8 +14,6 @@ class KeywordExtractor(DataPrep):
 
     def __repr__(self) -> str: return f"Class: {self.__class__.__name__}"
 
-    def __str__(self) -> str: return f"Java keywords: {self.java_keywords}"
-
     @property
     def get_keyword_frequency(self) -> List[int]:
         keyword_frequency = []
