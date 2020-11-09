@@ -4,10 +4,10 @@ from math import floor, log10
 from nltk.util import ngrams
 from nltk.tokenize import word_tokenize
 from features.extractors.utils import patterns
-from features.extractors.process_data import ProcessData
+from features.extractors.data_prep import DataPrep
 
 
-class NgramExtractor(ProcessData):
+class NgramExtractor(DataPrep):
     """Extract ngrams"""
 
     def __init__(self, n) -> None:

@@ -3,7 +3,7 @@ import pandas as pd
 from typing import List
 
 
-class ProcessData:
+class DataPrep:
     """Processes data from dataset file"""
 
     def __init__(self) -> None: pass

@@ -3,11 +3,11 @@ from typing import List
 from statistics import pstdev
 from math import floor, log10
 from features.extractors.utils import patterns
-from features.extractors.process_data import ProcessData
+from features.extractors.data_prep import DataPrep
 
 
-class CodeLinesExtractor(ProcessData):
-    """Extracts statistics of code lines"""
+class CodeLinesExtractor(DataPrep):
+    """Extracts statistics of codelines"""
 
     def __init__(self) -> None:
         super().__init__()

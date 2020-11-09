@@ -3,10 +3,10 @@ from typing import List
 from math import floor, log10
 from nltk import RegexpTokenizer
 from features.extractors.utils import patterns
-from features.extractors.process_data import ProcessData
+from features.extractors.data_prep import DataPrep
 
 
-class WordToken(ProcessData):
+class WordToken(DataPrep):
     """Extract word tokens"""
 
     def __init__(self) -> None:
