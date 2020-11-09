@@ -15,6 +15,8 @@ class CodeLinesExtractor(DataPrep):
 
     def __repr__(self) -> str: return f"Class: {self.__class__.__name__}"
 
+    def __str__(self) -> str: return f"Imports & Package: {self.self.imports}"
+
     def mean_codelines(self) -> List[int]:
         codelines_avg = []
         for file in self.get_sourcecode:

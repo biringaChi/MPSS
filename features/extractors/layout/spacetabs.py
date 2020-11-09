@@ -7,6 +7,8 @@ from features.extractors.data_prep import DataPrep
 
 
 class SpaceTabs(DataPrep):
+    """Extracts frequency of space and tabs"""
+
     def __init__(self) -> None:
         super().__init__()
         self.space_pattern = patterns["space_pattern"]
