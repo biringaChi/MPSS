@@ -1,11 +1,9 @@
-import os
-import sys
-import _specify_dir
 import re
-from features.extractors.utils import patterns
-from features.extractors.process_data import ProcessData
+import _specify_dir
 from typing import List
 from math import floor, log10
+from features.extractors.utils import patterns
+from features.extractors.process_data import ProcessData
 
 
 class CommentsExtractor(ProcessData):

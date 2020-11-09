@@ -1,6 +1,6 @@
 import _specify_dir
-from statistics import pstdev
 from typing import List
+from statistics import pstdev
 from math import floor, log10
 from features.extractors.utils import patterns
 from features.extractors.process_data import ProcessData
@@ -33,7 +33,6 @@ class CodeLinesExtractor(ProcessData):
         return codelines_sd
 
     def import_codelines(self) -> List[int]:
-        # imports and package
         import_codelines = []
         for file in self.get_sourcecode:
             codeline = len(

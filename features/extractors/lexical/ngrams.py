@@ -1,9 +1,8 @@
 import _specify_dir
-from nltk.tokenize import word_tokenize
-from nltk.util import ngrams
-import nltk
 from typing import List
 from math import floor, log10
+from nltk.util import ngrams
+from nltk.tokenize import word_tokenize
 from features.extractors.utils import patterns
 from features.extractors.process_data import ProcessData
 

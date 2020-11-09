@@ -1,7 +1,7 @@
 import _specify_dir
-import nltk
 from typing import List
 from math import floor, log10
+from nltk import RegexpTokenizer
 from features.extractors.utils import patterns
 from features.extractors.process_data import ProcessData
 
@@ -21,7 +21,7 @@ class WordToken(ProcessData):
     def get_word_tokens(self) -> List[int]:
         tokens = []
         for file in self.get_sourcecode:
-            tokenizer = nltk.RegexpTokenizer(self.word_pattern)
+            tokenizer = RegexpTokenizer(self.word_pattern)
             word_token = tokenizer.tokenize(file)
             tokens.append(self.__len__(word_token))
         return tokens
