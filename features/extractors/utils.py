@@ -11,4 +11,6 @@ patterns = {
     "comments_pattern": "/\*(.|[\r\n])*?\*/|//.*",
     "methods_pattern": "(public|private|protected|static|\s) +[\w\<\>\[\]]+\s+(\w+) *\([^\)]*\) *(\{?|[^;])",
     "word_pattern": "\w+",
+    "space_pattern": " +",
+    "tabs_pattern": "\t+",
 }
