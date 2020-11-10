@@ -31,7 +31,3 @@ class MethodsExtractor(DataPrep):
             except ZeroDivisionError:
                 methods_features.append(0)
         return methods_features
-
-
-if __name__ == "__main__":
-    MethodsExtractor().extract_methods()

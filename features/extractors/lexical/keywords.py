@@ -30,7 +30,3 @@ class KeywordExtractor(DataPrep):
             except ZeroDivisionError:
                 lexical_features.append(0)
         return lexical_features
-
-
-if __name__ == "__main__":
-    KeywordExtractor().extract_keywords()

@@ -32,7 +32,3 @@ class WordToken(DataPrep):
             except ZeroDivisionError:
                 token_features.append(0)
         return token_features
-
-
-if __name__ == "__main__":
-    WordToken().extract_word_tokens()

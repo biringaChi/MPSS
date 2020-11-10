@@ -31,7 +31,3 @@ class CommentsExtractor(DataPrep):
             except ZeroDivisionError:
                 comments_features.append(0)
         return comments_features
-
-
-if __name__ == "__main__":
-    CommentsExtractor().extract_comments()

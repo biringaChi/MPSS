@@ -41,7 +41,3 @@ class CodeLinesExtractor(DataPrep):
                               if line.startswith(self.imports)])
             import_codelines.append((floor(log10(codeline/importline))))
         return import_codelines
-
-
-if __name__ == "__main__":
-    CodeLinesExtractor().import_codelines()

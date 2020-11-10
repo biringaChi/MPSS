@@ -25,11 +25,6 @@ class NgramExtractor(DataPrep):
         return ngrams_ex
 
 
-if __name__ == "__main__":
-    result = NgramExtractor(1).extract_ngrams()
-    print(result[0])
-
-
 class TF_IDF(NgramExtractor):
     """Extracts TF-IDF"""
 
