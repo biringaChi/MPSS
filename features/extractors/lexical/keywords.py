@@ -26,7 +26,7 @@ class KeywordExtractor(DataPrep):
         lexical_features = []
         for char_freq, kw_freq in zip(self.get_character_frequency, self.get_keyword_frequency):
             try:
-                lexical_features.append(floor(log10(char_freq / kw_freq)))
+                lexical_features.append(round(log10(char_freq / kw_freq), 2))
             except ZeroDivisionError:
                 lexical_features.append(0)
         return lexical_features

@@ -36,7 +36,7 @@ class SpaceTabs(DataPrep):
         space_features = []
         for char_freq, space_freq in zip(self.get_character_frequency, self.get_space_frequency):
             try:
-                space_features.append(floor(log10(char_freq / space_freq)))
+                space_features.append(round(log10(char_freq / space_freq), 2))
             except ZeroDivisionError:
                 space_features.append(0)
         return space_features
@@ -45,11 +45,7 @@ class SpaceTabs(DataPrep):
         tabs_features = []
         for char_freq, tab_freq in zip(self.get_character_frequency, self.get_tabs_frequency):
             try:
-                tabs_features.append(floor(log10(char_freq / tab_freq)))
+                tabs_features.append(floor(log10(char_freq / tab_freq), 2))
             except ZeroDivisionError:
                 tabs_features.append(0)
         return tabs_features
-
-
-if __name__ == "__main__":
-    SpaceTabs().extract_tabs()

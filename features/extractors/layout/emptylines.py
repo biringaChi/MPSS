@@ -19,8 +19,7 @@ class EmptyLinesExtractor(DataPrep):
     def get_emptylines_frequency(self) -> List[int]:
         emptyline_frequency = []
         for file in self.get_sourcecode:
-            emptyline = [emptyline for emptyline in file.splitlines()
-                         if emptyline == ""]
+            emptyline = [emptyline for emptyline in file.splitlines() if emptyline == ""]
             emptyline_frequency.append(self.__len__(emptyline))
         return emptyline_frequency
 
@@ -28,12 +27,7 @@ class EmptyLinesExtractor(DataPrep):
         emptyline_features = []
         for char_freq, emptyline_freq in zip(self.get_character_frequency, self.get_emptylines_frequency):
             try:
-                emptyline_features.append(
-                    floor(log10(char_freq / emptyline_freq)))
+                emptyline_features.append(round(log10(char_freq / emptyline_freq), 2))
             except ZeroDivisionError:
                 emptyline_features.append(0)
         return emptyline_features
-
-
-if __name__ == "__main__":
-    EmptyLinesExtractor().extract_emptylines()

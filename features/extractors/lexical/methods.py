@@ -27,7 +27,7 @@ class MethodsExtractor(DataPrep):
         methods_features = []
         for char_freq, method_freq in zip(self.get_character_frequency, self.get_methods_frequency):
             try:
-                methods_features.append(floor(log10(char_freq / method_freq)))
+                methods_features.append(round(log10(char_freq / method_freq), 2))
             except ZeroDivisionError:
                 methods_features.append(0)
         return methods_features

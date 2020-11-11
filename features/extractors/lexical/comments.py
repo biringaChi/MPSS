@@ -27,7 +27,8 @@ class CommentsExtractor(DataPrep):
         comments_features = []
         for char_freq, cmnt_freq in zip(self.get_character_frequency, self.get_comments_frequency):
             try:
-                comments_features.append(floor(log10(char_freq / cmnt_freq)))
+                comments_features.append(
+                    round(log10(char_freq / cmnt_freq), 2))
             except ZeroDivisionError:
                 comments_features.append(0)
         return comments_features

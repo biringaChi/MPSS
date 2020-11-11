@@ -18,26 +18,31 @@ class CodeLinesExtractor(DataPrep):
     def mean_codelines(self) -> List[int]:
         codelines_avg = []
         for file in self.get_sourcecode:
-            codeline = [self.__len__(codeline)
-                        for codeline in file.splitlines() if codeline.strip()]
-            codelines_avg.append(
-                floor(log10(sum(codeline) / self.__len__(codeline))))
+            try:
+                codeline = [self.__len__(codeline) for codeline in file.splitlines() if codeline.strip()]
+                codelines_avg.append(round(log10(sum(codeline) / self.__len__(codeline)), 2))
+            except ZeroDivisionError:
+                codelines_avg.append(0)
         return codelines_avg
 
     def sd_codelines(self) -> List[int]:
         codelines_sd = []
         for codelines in self.get_sourcecode:
-            codeline = [self.__len__(
-                codeline) for codeline in codelines.splitlines() if codeline.strip()]
-            codelines_sd.append(floor(log10(pstdev(codeline))))
+            try:
+                codeline = [self.__len__(
+                    codeline) for codeline in codelines.splitlines() if codeline.strip()]
+                codelines_sd.append(round(log10(pstdev(codeline)), 2))
+            except ZeroDivisionError:
+                codelines_sd.append(0)
         return codelines_sd
 
-    def import_codelines(self) -> List[int]:
-        import_codelines = []
+    def import_statements(self) -> List[int]:
+        import_statements = []
         for file in self.get_sourcecode:
-            codeline = len(
-                [line for line in file.splitlines() if line.strip()])
-            importline = len([line for line in file.splitlines()
-                              if line.startswith(self.imports)])
-            import_codelines.append((floor(log10(codeline/importline))))
-        return import_codelines
+            try:
+                codeline = self.__len__([line for line in file.splitlines() if line.strip()])
+                importline = self.__len__([line for line in file.splitlines() if line.startswith(self.imports)])
+                import_statements.append(round(log10(codeline / importline), 2))
+            except ZeroDivisionError:
+                import_statements.append(0)
+        return import_statements
