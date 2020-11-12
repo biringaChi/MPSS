@@ -13,13 +13,17 @@ import java.util.stream.Stream;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
+
 public class DataPrep {
-	private static final String data_dir = "/Users/Gabriel/Documents/research";
-	
+	// Processes data from dataset file
+
+	private static final String data_dir = "/Users/Gabriel/Documents/research/experimentation";
+
 	public String getDir() throws IOException {
 		try (Stream<Path> walk = Files.walk(Paths.get(data_dir))) {
-			List<String> data_dir = walk.map(d -> d.toString())
-					.filter(f -> f.endsWith(".csv")).collect(Collectors.toList());
+			List<String> data_dir = walk.map(x -> x.toString())
+					.filter(x -> x.endsWith(".csv"))
+					.collect(Collectors.toList());
 			return data_dir.get(1);
 		} 
 	} 
