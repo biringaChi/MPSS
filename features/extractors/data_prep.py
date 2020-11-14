@@ -38,9 +38,9 @@ class DataPrep:
         return [self.__len__(file) for file in self.get_sourcecode]
 
     @property
-    def get_word_frequency(self) -> List[int]:
-        word_freq = []
+    def get_codeword_frequency(self) -> List[int]:
+        codeword_freq = []
         for file in self.get_sourcecode:
-            word_freq.append(self.__len__(
-                [line for line in file.split() if line.strip()]))
-        return word_freq
+            codeword_freq.append(self.__len__(
+                [line for line in file.split()]))
+        return codeword_freq

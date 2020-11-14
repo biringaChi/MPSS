@@ -1,3 +1,4 @@
+import re
 import _specify_dir
 from typing import List
 from math import floor, log10
@@ -11,13 +12,22 @@ class KeywordExtractor(DataPrep):
     def __init__(self) -> None:
         super().__init__()
         self.java_keywords = patterns["java_keywords"]
+        self.comments_pattern = patterns["comments_pattern"]
 
     def __repr__(self) -> str: return f"Class: {self.__class__.__name__}"
 
     @property
+    def del_comments(self) -> List[int]:
+        modified_file = []
+        for file in self.get_sourcecode:
+            temp = re.sub(self.comments_pattern, "", file)
+            modified_file.append(temp)
+        return modified_file
+
+    @property
     def get_keyword_frequency(self) -> List[int]:
         keyword_frequency = []
-        for file in self.get_sourcecode:
+        for file in self.del_comments:
             temp = [word for word in file.split() if word in self.java_keywords]
             keyword_frequency.append(self.__len__(temp))
         return keyword_frequency
