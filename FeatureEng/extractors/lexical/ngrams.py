@@ -3,8 +3,8 @@ from typing import List
 from math import floor, log10
 from nltk.util import ngrams
 from nltk.tokenize import word_tokenize
-from features.extractors.utils import patterns
-from features.extractors.data_prep import DataPrep
+from FeatureEng.extractors.utils import patterns
+from FeatureEng.extractors.data_prep import DataPrep
 
 
 class NgramExtractor(DataPrep):

@@ -17,11 +17,9 @@ class DataPrep:
         _walk_up = os.path.join(os.path.dirname(
             os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
         try:
-            _subfolders = [subs.path for subs in os.scandir(
-                _walk_up) if subs.is_dir()]
-            _data_dir = os.path.join([subs.path for subs in os.scandir(
-                _walk_up) if subs.is_dir()][-1], os.listdir(_subfolders[-1])[-1])
-            return _data_dir
+            _subfolders = [subs.path for subs in os.scandir(_walk_up) if subs.is_dir()]
+            _parent_dir = os.path.join(_subfolders[1], os.listdir(_subfolders[1])[-1])
+            return os.path.join(_parent_dir, os.listdir(_parent_dir)[-1])
         except OSError as e:
             raise(e)
 

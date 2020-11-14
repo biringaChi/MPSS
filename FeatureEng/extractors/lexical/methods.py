@@ -2,8 +2,8 @@ import re
 import _specify_dir
 from typing import List
 from math import floor, log10
-from features.extractors.utils import patterns
-from features.extractors.data_prep import DataPrep
+from FeatureEng.extractors.utils import patterns
+from FeatureEng.extractors.data_prep import DataPrep
 
 
 class MethodsExtractor(DataPrep):
