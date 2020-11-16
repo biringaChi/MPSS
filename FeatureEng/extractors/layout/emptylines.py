@@ -2,8 +2,8 @@ import _specify_dir
 from typing import List
 from statistics import pstdev
 from math import floor, log10
-from FeatureEng.extractors.utils import patterns
-from FeatureEng.extractors.data_prep import DataPrep
+from FeatureEng.Extractors.utils import patterns
+from FeatureEng.Extractors.data_prep import DataPrep
 
 
 class EmptyLinesExtractor(DataPrep):
