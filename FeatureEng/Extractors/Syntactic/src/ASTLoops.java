@@ -15,9 +15,9 @@ public class ASTLoops extends ASTPrep {
 
 	public List<Integer> getLoopStmts() throws IOException, CsvValidationException {
 		List<Integer> loopFrequency = new ArrayList<>();
-		for(CompilationUnit cu : getCompilationUnits()) {
-			if(cu != null) {
-				List<Statement> stmts = cu.findAll(Statement.class);
+		for(CompilationUnit ast : getASTs()) {
+			if(ast != null) {
+				List<Statement> stmts = ast.findAll(Statement.class);
 				int count = 0;
 				for(Statement stmt : stmts) {
 					if(stmt.isForStmt() || stmt.isForEachStmt() || stmt.isWhileStmt()) count++;

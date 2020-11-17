@@ -16,10 +16,10 @@ public class ASTConditionals extends ASTPrep {
 	 */ 
 	public List<Integer> getCondStmts() throws IOException, CsvValidationException {
 		List<Integer> condFrequency = new ArrayList<>();
-		for(CompilationUnit cu : getCompilationUnits()) {
-			if(cu != null) {
-				List<Statement> stmts = cu.findAll(Statement.class);
-				List<Expression> exps = cu.findAll(Expression.class);
+		for(CompilationUnit ast : getASTs()) {
+			if(ast != null) {
+				List<Statement> stmts = ast.findAll(Statement.class);
+				List<Expression> exps = ast.findAll(Expression.class);
 				int count = 0;
 				for(Statement stmt : stmts) {
 					if(stmt.isIfStmt() || stmt.isSwitchStmt() || stmt.isTryStmt()) count++;

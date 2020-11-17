@@ -15,9 +15,9 @@ public class ASTLiteral extends ASTPrep {
 	 */ 
 	public List<Integer> getLiteralExps() throws IOException, CsvValidationException {
 		List<Integer> literalFrequency = new ArrayList<>();
-		for(CompilationUnit cu : getCompilationUnits()) {
-			if(cu != null) {
-				List<Expression> exps = cu.findAll(Expression.class);
+		for(CompilationUnit ast : getASTs()) {
+			if(ast != null) {
+				List<Expression> exps = ast.findAll(Expression.class);
 				int count = 0;
 				for(Expression exp : exps) {
 					if(exp.isLiteralExpr() || exp.isIntegerLiteralExpr() 

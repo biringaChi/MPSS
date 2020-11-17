@@ -72,7 +72,7 @@ public class ASTPrep {
 		return codewordFreq;
 	}
 
-	public List<CompilationUnit> getCompilationUnits() throws IOException, CsvValidationException {
+	public List<CompilationUnit> getASTs() throws IOException, CsvValidationException {
 		Integer idx = 0;
 		List<CompilationUnit> compilationUnits = new ArrayList<>();
 		HashMap<Integer, String> uncompiled = new HashMap<>();
