@@ -13,22 +13,20 @@ public class ASTLiteral extends ASTPrep {
 	 * Extracts frequency of Literal Expressions
 	 * Types: number(int, double, float), character, string, boolean, null, etc.
 	 */ 
-	public List<Integer> getLiteralExps() throws IOException {
+	public List<Integer> getLiteralExps() throws IOException, CsvValidationException {
 		List<Integer> literalFrequency = new ArrayList<>();
-		try {
-			for(CompilationUnit cu : getCompilationUnits()) {
-				if(cu != null) {
-					List<Expression> exps = cu.findAll(Expression.class);
-					int count = 0;
-					for(Expression exp : exps) {
-						if(exp.isLiteralExpr() || exp.isIntegerLiteralExpr() 
-						|| exp.isDoubleLiteralExpr() || exp.isCharLiteralExpr() 
-						|| exp.isTextBlockLiteralExpr() || exp.isNormalAnnotationExpr()) count++;
-					}
-					literalFrequency.add(count);
-				} else literalFrequency.add(0);
-			}
-		} catch (CsvValidationException e) {e.printStackTrace();}
+		for(CompilationUnit cu : getCompilationUnits()) {
+			if(cu != null) {
+				List<Expression> exps = cu.findAll(Expression.class);
+				int count = 0;
+				for(Expression exp : exps) {
+					if(exp.isLiteralExpr() || exp.isIntegerLiteralExpr() 
+					|| exp.isDoubleLiteralExpr() || exp.isCharLiteralExpr() 
+					|| exp.isTextBlockLiteralExpr() || exp.isNormalAnnotationExpr()) count++;
+				}
+				literalFrequency.add(count);
+			} else literalFrequency.add(0);
+		}
 		return literalFrequency;
 	}
 

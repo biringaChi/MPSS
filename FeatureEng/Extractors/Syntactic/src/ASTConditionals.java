@@ -14,24 +14,22 @@ public class ASTConditionals extends ASTPrep {
 	 * Extracts frequency of Conditional Statements
 	 * Types: If, Switch, Try-Catch and Ternary 
 	 */ 
-	public List<Integer> getCondStmts() throws IOException {
+	public List<Integer> getCondStmts() throws IOException, CsvValidationException {
 		List<Integer> condFrequency = new ArrayList<>();
-		try {
-			for(CompilationUnit cu : getCompilationUnits()) {
-				if(cu != null) {
-					List<Statement> stmts = cu.findAll(Statement.class);
-					List<Expression> exps = cu.findAll(Expression.class);
-					int count = 0;
-					for(Statement stmt : stmts) {
-						if(stmt.isIfStmt() || stmt.isSwitchStmt() || stmt.isTryStmt()) count++;
-					}
-					for(Expression exp : exps) {
-						if(exp.isConditionalExpr()) count++;
-					}
-					condFrequency.add(count);
-				} else condFrequency.add(0);
-			}
-		} catch (CsvValidationException e) {e.printStackTrace();}
+		for(CompilationUnit cu : getCompilationUnits()) {
+			if(cu != null) {
+				List<Statement> stmts = cu.findAll(Statement.class);
+				List<Expression> exps = cu.findAll(Expression.class);
+				int count = 0;
+				for(Statement stmt : stmts) {
+					if(stmt.isIfStmt() || stmt.isSwitchStmt() || stmt.isTryStmt()) count++;
+				}
+				for(Expression exp : exps) {
+					if(exp.isConditionalExpr()) count++;
+				}
+				condFrequency.add(count);
+			} else condFrequency.add(0);
+		}
 		return condFrequency;
 	}
 

@@ -10,24 +10,21 @@ import com.opencsv.exceptions.CsvValidationException;
 
 public class ASTLoops extends ASTPrep {
 	/**
-	 * Extracts frequency of Loop Statements
-	 * Types: for, ForEach and while 
+	 * Extracts frequency of Loop Statements Types: for, ForEach and while
 	 */
-	
-	public List<Integer> getLoopStmts() throws IOException {
+
+	public List<Integer> getLoopStmts() throws IOException, CsvValidationException {
 		List<Integer> loopFrequency = new ArrayList<>();
-		try {
-			for(CompilationUnit cu : getCompilationUnits()) {
-				if(cu != null) {
-					List<Statement> stmts = cu.findAll(Statement.class);
-					int count = 0;
-					for(Statement stmt : stmts) {
-						if(stmt.isForStmt() || stmt.isForEachStmt() || stmt.isWhileStmt()) count++;
-					}
-					loopFrequency.add(count);
-				} else loopFrequency.add(0);
-			}
-		} catch (CsvValidationException e) {e.printStackTrace();}
+		for(CompilationUnit cu : getCompilationUnits()) {
+			if(cu != null) {
+				List<Statement> stmts = cu.findAll(Statement.class);
+				int count = 0;
+				for(Statement stmt : stmts) {
+					if(stmt.isForStmt() || stmt.isForEachStmt() || stmt.isWhileStmt()) count++;
+				}
+				loopFrequency.add(count);
+			} else loopFrequency.add(0);
+		}
 		return loopFrequency;
 	}
 
