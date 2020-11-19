@@ -3,8 +3,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 
 import com.github.javaparser.ast.CompilationUnit;
@@ -16,13 +18,16 @@ import com.google.common.collect.Iterators;
 import com.opencsv.exceptions.CsvValidationException;
 
 public class ASTs extends ASTPrep {
-	
+	/**
+	 * Processes ASTs and generates additional features
+	 * Examples: Graphs, number of nodes and node types
+	*/
+
 	public List<String> viewASTs() throws CsvValidationException, IOException {
 		YamlPrinter printer = new YamlPrinter(true);
 		List<String> ASTs = new ArrayList<>();
 		for (CompilationUnit ast : getASTs()) {
-			if (ast != null)
-				ASTs.add(printer.output(ast).toString());
+			if (ast != null) ASTs.add(printer.output(ast).toString());
 			else ASTs.add(null);
 		}
 		return ASTs;
@@ -75,10 +80,10 @@ public class ASTs extends ASTPrep {
 		return depth;
 	}
 
-	public HashMap<String, List<String>> treeNodeTypes() throws CsvValidationException, IOException {
+	public Map<String, List<String>> treeNodeTypes() throws CsvValidationException, IOException {
 		Integer idx = 0;
 		String docId = "doc", typeId = "Type="; 
-		HashMap<String, List<String>> treeNodeType = new HashMap<>(); 
+		Map<String, List<String>> treeNodeType = new LinkedHashMap<>(); 
 		for(String docNode : viewASTs()) {
 			List<String> temp = new ArrayList<>();
 			if(docNode != null) {
