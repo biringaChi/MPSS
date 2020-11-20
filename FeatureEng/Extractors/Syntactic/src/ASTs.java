@@ -41,7 +41,7 @@ public class ASTs extends ASTPrep {
 					PrintWriter printWriter = new PrintWriter(fileWriter)) {
 				printWriter.print(printer.output(ast));
 			}
-		} else System.err.println("Please provide a valid compilation unit idx");
+		} else System.err.println();
 	}
 
 	public List<Double> numNodes() throws CsvValidationException, IOException {

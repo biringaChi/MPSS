@@ -55,17 +55,17 @@ public class ASTPrep {
 		return sourcecode;
 	}
 	
-	public List<Integer> getCharFrequency() throws IOException, CsvValidationException {
-		List<Integer> charFreq = new ArrayList<>();
+	public List<Double> getCharFreq() throws IOException, CsvValidationException {
+		List<Double> charFreq = new ArrayList<>();
 		for (String file : getSourcecode()) {
-			charFreq.add(file.length());
+			charFreq.add((double) file.length());
 		}
 		return charFreq;
 	}
 
-	public List<Integer> getCodewordFrequency() throws IOException, CsvValidationException {
+	public List<Integer> getCodewordFreq() throws IOException, CsvValidationException {
 		List<Integer> codewordFreq = new ArrayList<>();
-		for(String file : getSourcecode()) {
+		for (String file : getSourcecode()) {
 			String[] string = file.split("\\s+");
 			codewordFreq.add(string.length);
 		}
