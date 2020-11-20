@@ -35,7 +35,7 @@ public class ASTPrep {
 
 	public List<List<String>> readData() throws IOException, CsvValidationException {
 		List<List<String>> data = new ArrayList<>();
-		try(CSVReader reader = new CSVReader(new FileReader(getDir()));) {
+		try (CSVReader reader = new CSVReader(new FileReader(getDir()));) {
 			String[] row;
 			while ((row = reader.readNext()) != null) {
 				data.add(Arrays.asList(row));
@@ -46,8 +46,8 @@ public class ASTPrep {
 
 	public List<String> getSourcecode() throws IOException, CsvValidationException {
 		List<String> sourcecode = new ArrayList<>();
-		for(List<String> row : readData()) {
-			for(int col = 2; col < row.size(); col += 4) {
+		for (List<String> row : readData()) {
+			for (int col = 2; col < row.size(); col += 4) {
 				sourcecode.add(row.get(col));
 			}
 		}
@@ -57,7 +57,7 @@ public class ASTPrep {
 	
 	public List<Integer> getCharFrequency() throws IOException, CsvValidationException {
 		List<Integer> charFreq = new ArrayList<>();
-		for(String file : getSourcecode()) {
+		for (String file : getSourcecode()) {
 			charFreq.add(file.length());
 		}
 		return charFreq;
@@ -76,7 +76,7 @@ public class ASTPrep {
 		Integer idx = 0;
 		List<CompilationUnit> compilationUnits = new ArrayList<>();
 		HashMap<Integer, String> uncompiled = new HashMap<>();
-		for(String file : getSourcecode()) {
+		for (String file : getSourcecode()) {
 			try {
 				CompilationUnit compilationUnit = StaticJavaParser.parse(file);
 				compilationUnits.add(compilationUnit);

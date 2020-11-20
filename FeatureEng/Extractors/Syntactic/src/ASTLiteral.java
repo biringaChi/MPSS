@@ -15,12 +15,12 @@ public class ASTLiteral extends ASTPrep {
 	 */ 
 	public List<Integer> getLiteralExps() throws IOException, CsvValidationException {
 		List<Integer> literalFrequency = new ArrayList<>();
-		for(CompilationUnit ast : getASTs()) {
-			if(ast != null) {
+		for (CompilationUnit ast : getASTs()) {
+			if (ast != null) {
 				List<Expression> exps = ast.findAll(Expression.class);
 				int count = 0;
-				for(Expression exp : exps) {
-					if(exp.isLiteralExpr() || exp.isIntegerLiteralExpr() 
+				for (Expression exp : exps) {
+					if (exp.isLiteralExpr() || exp.isIntegerLiteralExpr() 
 					|| exp.isDoubleLiteralExpr() || exp.isCharLiteralExpr() 
 					|| exp.isTextBlockLiteralExpr() || exp.isNormalAnnotationExpr()) count++;
 				}
@@ -32,7 +32,7 @@ public class ASTLiteral extends ASTPrep {
 
 	public List<Double> extractLiteralFeatures() throws IOException, CsvValidationException {
 		List<Double> conditionalFeatures = new ArrayList<>();
-		for(int i = 0; i < getCharFrequency().size(); i++) {
+		for (int i = 0; i < getCharFrequency().size(); i++) {
 			try {
 				double temp = Math.log10(getCharFrequency().get(i) / getLiteralExps().get(i));
 				System.out.println(temp);

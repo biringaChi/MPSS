@@ -2,7 +2,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -61,18 +60,18 @@ public class ASTs extends ASTPrep {
 		CompilationUnit ast = getASTs().get(0);
 		List<List<String>> levels = new ArrayList<>();
 		Node root = ast.findRootNode();
-		if(root == null) return 0;
+		if (root == null) return 0;
 		Queue<Node> queue = new LinkedList<>();
 		queue.offer(root);
 		int depth = 0;
-		while(!queue.isEmpty()) {
+		while (!queue.isEmpty()) {
 			List<String> level = new ArrayList<>();
 			int size = queue.size();
-			for(int i = 0; i < size; i++) {
+			for (int i = 0; i < size; i++) {
 				Node currentNode = queue.poll();
 				level.add(currentNode.getRange().toString());
-				if(currentNode.getChildNodes() != null) queue.add(currentNode.getChildNodes().get(0));
-				if(currentNode.getChildNodes().get(1) != null) queue.add(currentNode.getChildNodes().get(1));
+				if (currentNode.getChildNodes() != null) queue.add(currentNode.getChildNodes().get(0));
+				if (currentNode.getChildNodes().get(1) != null) queue.add(currentNode.getChildNodes().get(1));
 			}
 			depth++;
 			levels.add(level);
@@ -86,10 +85,10 @@ public class ASTs extends ASTPrep {
 		Map<String, List<String>> treeNodeType = new LinkedHashMap<>(); 
 		for(String docNode : viewASTs()) {
 			List<String> temp = new ArrayList<>();
-			if(docNode != null) {
+			if (docNode != null) {
 				String[] nodes = docNode.split("\\s+");
-				for(String node : nodes) {
-					if(node.indexOf(typeId) != -1) {
+				for (String node : nodes) {
+					if (node.indexOf(typeId) != -1) {
 						temp.add(node.substring(node.indexOf('=') + 1, node.indexOf(')')));
 					}
 				}
