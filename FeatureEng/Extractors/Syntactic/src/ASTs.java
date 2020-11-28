@@ -44,14 +44,14 @@ public class ASTs extends ASTPrep {
 		} else System.err.println();
 	}
 
-	public List<Double> numNodes() throws CsvValidationException, IOException {
-		List<Double> nodes = new ArrayList<>();
+	public List<Integer> numNodes() throws CsvValidationException, IOException {
+		List<Integer> nodes = new ArrayList<>();
 		for (CompilationUnit ast : getASTs()) {
 			if (ast != null) {
 				PreOrderIterator iterator = new Node.PreOrderIterator(ast);
 				int size = Iterators.size(iterator);
-				nodes.add((double) (Math.round(Math.log10(size) * 100.0) / 100.0));
-			} else nodes.add((double) 0);
+				nodes.add(size);
+			} else nodes.add(0);
 		}
 		return nodes;
 	}
@@ -97,5 +97,19 @@ public class ASTs extends ASTPrep {
 			idx++;
 		}
 		return treeNodeType;
+	}
+	
+	public void writeASTs() throws CsvValidationException, IOException {
+		FileWriter fw = new FileWriter("ML/ASTVectors/ASTData.txt");
+		List<String> temp = new ArrayList<>(); 
+		for (Map.Entry<String, List<String>> entry : treeNodeTypes().entrySet()) {
+			if (entry.getValue() != null) {
+				temp.add(entry.getValue().toString().replace("[", "").replace("]", ""));
+			} else temp.add(null);
+		}
+		for (String string : temp) {
+			fw.write(string + System.lineSeparator());
+		}
+		fw.close();
 	}
 }

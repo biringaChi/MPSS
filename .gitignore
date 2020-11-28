@@ -8,3 +8,7 @@ visual-checkpoint.ipynb
 dataset.csv
 dataset-checkpoint.csv
 scratch.txt
+Untitled.ipynb
+.ipynb_checkpoints
+ASTData.txt
+node_vecs.wordvectors
