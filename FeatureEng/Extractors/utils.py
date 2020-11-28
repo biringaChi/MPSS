@@ -1,4 +1,4 @@
-# A dictionary of patterns and keywords
+# Regular expression patterns and java keywords
 patterns = {
     "java_keywords": {"abstract", "assert", "boolean", "break", "byte", "case", "catch", "char",
                       "class", "const*", "**", "***", "****", "continue", "default", "do", "double",

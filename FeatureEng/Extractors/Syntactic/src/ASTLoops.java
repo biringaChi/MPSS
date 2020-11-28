@@ -10,7 +10,8 @@ import com.opencsv.exceptions.CsvValidationException;
 
 public class ASTLoops extends ASTPrep {
 	/**
-	 * Extracts frequency of Loop Statements Types: for, ForEach and while
+	 * Extracts frequency of Loop Statements 
+	 * Types: for, ForEach and while
 	 */
 
 	public List<Double> getLoopStmts() throws IOException, CsvValidationException {

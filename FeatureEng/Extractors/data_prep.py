@@ -6,8 +6,6 @@ from typing import List
 class DataPrep:
     """Processes data from dataset file"""
 
-    def __init__(self) -> None: pass
-
     def __repr__(self) -> str: return f"{self.__class__.__name__}"
 
     def __len__(self, value) -> int: return len(value)

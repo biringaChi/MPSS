@@ -5,7 +5,7 @@ from gensim.models import Word2Vec
 
 
 class ASTVectors:
-	"""Creates vectors for ASTs"""
+	"""Creates embedding vectors for ASTs"""
 
 	def get_nodes(self):
 		try:
@@ -15,7 +15,7 @@ class ASTVectors:
 		except FileNotFoundError as e:
 			raise e
 	
-	def node_types(self) -> List[List[int]]:
+	def node_types(self) -> List[List[str]]:
 		nodes = []
 		for node in self.get_nodes():
 			temp = [n.strip() for n in node.split(",")]
@@ -47,4 +47,3 @@ class ASTVectors:
 						temp.append(vec_dict.get(node))
 			node_vecs.append(temp)
 		return node_vecs
-		

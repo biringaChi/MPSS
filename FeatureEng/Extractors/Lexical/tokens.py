@@ -7,7 +7,7 @@ from FeatureEng.Extractors.data_prep import DataPrep
 
 
 class WordToken(DataPrep):
-    """Extract word tokens"""
+    """Extracts word tokens"""
 
     def __init__(self) -> None:
         super().__init__()
