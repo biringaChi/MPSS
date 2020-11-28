@@ -48,6 +48,3 @@ class ASTVectors:
 			node_vecs.append(temp)
 		return node_vecs
 		
-
-if __name__ == "__main__":
-	print(len(ASTVectors().assign_vectors()))
