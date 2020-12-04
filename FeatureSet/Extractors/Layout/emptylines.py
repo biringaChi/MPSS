@@ -1,17 +1,15 @@
 import _specify_dir
 from typing import List
-from statistics import pstdev
-from math import floor, log10
-from FeatureEng.Extractors.utils import patterns
-from FeatureEng.Extractors.data_prep import DataPrep
+from math import log10
+from FeatureSet.Extractors.utils import patterns
+from FeatureSet.Extractors.data_prep import DataPrep
 
 
 class EmptyLinesExtractor(DataPrep):
-    """Extracts frequency of empty lines"""
+    """ Extracts frequency of empty lines """
 
     def __init__(self) -> None:
         super().__init__()
-        self.imports = patterns["imports"]
 
     def __repr__(self) -> str: return f"Class: {self.__class__.__name__}"
 
@@ -23,11 +21,11 @@ class EmptyLinesExtractor(DataPrep):
             emptyline_frequency.append(self.__len__(emptyline))
         return emptyline_frequency
 
-    def extract_emptylines(self) -> List[int]:
+    def extract_emptylines(self) -> List[float]:
         emptyline_features = []
         for char_freq, emptyline_freq in zip(self.get_character_frequency, self.get_emptylines_frequency):
             try:
-                emptyline_features.append(round(log10(char_freq / emptyline_freq), 2))
+                emptyline_features.append(log10(char_freq / emptyline_freq))
             except ZeroDivisionError:
-                emptyline_features.append(0)
+                emptyline_features.append(0.0)
         return emptyline_features

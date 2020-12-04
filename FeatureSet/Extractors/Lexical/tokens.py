@@ -2,8 +2,8 @@ import _specify_dir
 from typing import List
 from math import floor, log10
 from nltk import RegexpTokenizer
-from FeatureEng.Extractors.utils import patterns
-from FeatureEng.Extractors.data_prep import DataPrep
+from FeatureSet.Extractors.utils import patterns
+from FeatureSet.Extractors.data_prep import DataPrep
 
 
 class WordToken(DataPrep):
@@ -11,7 +11,7 @@ class WordToken(DataPrep):
 
     def __init__(self) -> None:
         super().__init__()
-        self.word_pattern = patterns["word_pattern"]
+        self.WORD_PATTERN = patterns["word_pattern"]
 
     def __repr__(self) -> str: return f"Class: {self.__class__.__name__}"
 
@@ -19,7 +19,7 @@ class WordToken(DataPrep):
     def get_word_tokens(self) -> List[int]:
         tokens = []
         for file in self.get_sourcecode:
-            tokenizer = RegexpTokenizer(self.word_pattern)
+            tokenizer = RegexpTokenizer(self.WORD_PATTERN)
             word_token = tokenizer.tokenize(file)
             tokens.append(self.__len__(word_token))
         return tokens

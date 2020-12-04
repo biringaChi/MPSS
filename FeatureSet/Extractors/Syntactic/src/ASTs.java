@@ -10,10 +10,8 @@ import java.util.Queue;
 
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
-import com.github.javaparser.ast.Node.PreOrderIterator;
 import com.github.javaparser.printer.DotPrinter;
 import com.github.javaparser.printer.YamlPrinter;
-import com.google.common.collect.Iterators;
 import com.opencsv.exceptions.CsvValidationException;
 
 public class ASTs extends ASTPrep {
@@ -42,18 +40,6 @@ public class ASTs extends ASTPrep {
 				printWriter.print(printer.output(ast));
 			}
 		} else System.err.println();
-	}
-
-	public List<Integer> numNodes() throws CsvValidationException, IOException {
-		List<Integer> nodes = new ArrayList<>();
-		for (CompilationUnit ast : getASTs()) {
-			if (ast != null) {
-				PreOrderIterator iterator = new Node.PreOrderIterator(ast);
-				int size = Iterators.size(iterator);
-				nodes.add(size);
-			} else nodes.add(0);
-		}
-		return nodes;
 	}
 
 	public int maxDepth() throws CsvValidationException, IOException {

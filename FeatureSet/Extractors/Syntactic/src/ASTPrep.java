@@ -55,21 +55,21 @@ public class ASTPrep {
 		return sourcecode;
 	}
 	
-	public List<Double> getCharFreq() throws IOException, CsvValidationException {
-		List<Double> charFreq = new ArrayList<>();
+	public List<Double> getCharFreqs() throws IOException, CsvValidationException {
+		List<Double> charFreqs = new ArrayList<>();
 		for (String file : getSourcecode()) {
-			charFreq.add((double) file.length());
+			charFreqs.add((double) file.length());
 		}
-		return charFreq;
+		return charFreqs;
 	}
 
-	public List<Integer> getCodewordFreq() throws IOException, CsvValidationException {
-		List<Integer> codewordFreq = new ArrayList<>();
+	public List<Integer> getCodewordFreqs() throws IOException, CsvValidationException {
+		List<Integer> codewordFreqs = new ArrayList<>();
 		for (String file : getSourcecode()) {
 			String[] string = file.split("\\s+");
-			codewordFreq.add(string.length);
+			codewordFreqs.add(string.length);
 		}
-		return codewordFreq;
+		return codewordFreqs;
 	}
 
 	public List<CompilationUnit> getASTs() throws IOException, CsvValidationException {

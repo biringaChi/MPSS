@@ -10,11 +10,12 @@ import com.github.javaparser.ast.expr.Expression;
 import com.opencsv.exceptions.CsvValidationException;
 
 
-public class ASTLiteral extends ASTPrep {
+public class ASTLiterals extends ASTPrep {
 	/**
 	 * Extracts frequency of Literal Expressions
 	 * Types: number(int, double, float), character, string, boolean, null, etc.
-	 */ 
+	 */
+	 
 	public List<Double> getLiteralExps() throws IOException, CsvValidationException {
 		List<Double> literalFreqs = new ArrayList<>();
 		Iterator<String> getSourcecode = getSourcecode().iterator();

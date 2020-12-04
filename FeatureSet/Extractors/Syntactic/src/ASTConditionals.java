@@ -16,6 +16,7 @@ public class ASTConditionals extends ASTPrep {
 	 * Extracts frequency of Conditional Statements
 	 * Types: If, Switch, Try-Catch and Ternary 
 	 */ 
+	
 	public List<Double> getCondStmts() throws IOException, CsvValidationException {
 		List<Double> condFreqs = new ArrayList<>();
 		Iterator<String> getSourcecode = getSourcecode().iterator();

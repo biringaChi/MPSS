@@ -3,6 +3,7 @@ __pycache__
 .venv
 .vscode
 AnalyseRepo.py
+data_prep.py
 visual.ipynb
 visual-checkpoint.ipynb
 dataset.csv
@@ -12,4 +13,7 @@ Untitled.ipynb
 .ipynb_checkpoints
 _specify_dir.py
 ASTNodeTypesTFIDF.java
+test.py
 node_vecs.wordvectors
+_specify_dir.py
+processed_data.csv
