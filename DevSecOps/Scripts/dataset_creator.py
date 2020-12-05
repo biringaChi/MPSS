@@ -52,12 +52,4 @@ class DatasetCreator:
                     except OSError as e:
                         print(e)
                         continue
-
-
-if __name__ == '__main__':
-    path = "/Users/Gabriel/Documents/research/data_source/sc1/addressbook-level2-1.0"
-    filename = "dataset"
-    dc = DatasetCreator(path, filename, args.version,
-                        args.hash, args.build, args.test)
-    # dc.create_csv_file()
-    # dc.populate_csv_file()
+                    
