@@ -1,6 +1,6 @@
 import csv
-import pandas as pd
 import _specify_dir
+import pandas as pd
 from typing import Dict, List
 from FeatureSet.Extractors.data_prep import DataPrep
 from FeatureSet.Extractors.Layout.emptylines import EmptyLinesExtractor
@@ -17,37 +17,36 @@ class ProcessFeatures(DataPrep):
 	def __init__(self) -> None:
 		super().__init__()
 		self.FILE_PATH = "/Users/Gabriel/Documents/Research/Experimentation/ML/Models/processed_data.csv"
+		self.COLUMNS = ["Tabs", "EmptyLines", "Space", "MeanCodelines", 
+		"SDCodelines", "ImportStmts", "Comments", "Keywords", "Methods", 
+		"Build(sec)", "Test(sec)", "Conditionals", "Literals", "Loops", "Nodes"]
 
 	def get_build(self) -> List[float]:
-		data = pd.read_csv(self._get_dir)
+		data = pd.read_csv(self._GET_DIR)
 		return [build for build in data.iloc[:, 3]]
 	
 	def get_test(self) -> List[float]:
-		data = pd.read_csv(self._get_dir)
+		data = pd.read_csv(self._GET_DIR)
 		return [test for test in data.iloc[:, 4]]
 	
 	def feature_extractors(self) -> Dict:
 		return {
-			"EmptyLines" : EmptyLinesExtractor().extract_emptylines(), 
-			"Space" : SpaceTabsExtractor().extract_space(),
-			"Tabs" : SpaceTabsExtractor().extract_tabs(),
-			"MeanCodelines" : CodeLinesExtractor().extract_mean_codelines(),
-			"SDCodelines" : CodeLinesExtractor().extract_sd_codelines(),
-			"ImportStmts" : CodeLinesExtractor().extract_import_statements(),
-			"Comments" : CommentsExtractor().extract_comments(),
-			"Keywords" : KeywordExtractor().extract_keywords(),
-			"Methods": MethodsExtractor().extract_methods(),
-			"Build(sec)" : self.get_build(),
-			"Test(sec)" : self.get_test(),
-			"Conditionals" : "",
-			"Literals" : "",
-			"Loops" : "",
-			"Nodes" : ""
+			SpaceTabsExtractor().__class__.__name__ : SpaceTabsExtractor().extract_tabs(),
+			EmptyLinesExtractor().__class__.__name__ : EmptyLinesExtractor().extract_emptylines(), 
+			SpaceTabsExtractor().__class__.__name__ : SpaceTabsExtractor().extract_space(),
+			CodeLinesExtractor().__class__.__name__ : CodeLinesExtractor().extract_mean_codelines(),
+			CodeLinesExtractor().__class__.__name__ : CodeLinesExtractor().extract_sd_codelines(),
+			CodeLinesExtractor().__class__.__name__ : CodeLinesExtractor().extract_import_statements(),
+			CommentsExtractor().__class__.__name__ : CommentsExtractor().extract_comments(),
+			KeywordExtractor().__class__.__name__ : KeywordExtractor().extract_keywords(),
+			MethodsExtractor(). __class__.__name__ : MethodsExtractor().extract_methods(),
+			self.get_build.__name__ : self.get_build(),
+			self.get_test.__name__ : self.get_test(),
 			}
 
 	def build_dataset(self) -> None:
 		try:
-			with open(self.file_path, "w") as file:
+			with open(self.FILE_PATH, "w") as file:
 				with file:
 					write = csv.writer(file)
 					write.writerows(self.feature_extractors().values())
@@ -57,10 +56,18 @@ class ProcessFeatures(DataPrep):
 	def transpose_dataset_rename_columns(self) -> None:
 		data = pd.read_csv(self.FILE_PATH)
 		data = data.T.reset_index()
-		column_names = list(self.feature_extractors().keys())
-		data.rename(columns = {"index" : column_names[0], 0 : column_names[1], 1 : column_names[2], 
-									2 : column_names[3], 3 : column_names[4], 4 : column_names[5],
-                                    5 : column_names[6], 6 : column_names[7], 7 : column_names[8], 
-                                    8 : column_names[9], 9 : column_names[10], 10 : column_names[11],
-									11 : column_names[12], 12 : column_names[13], 13 : column_names[14]}, inplace = True)
+		data.rename(columns = {"index" : self.COLUMNS[0], 0 : self.COLUMNS[1], 1 : self.COLUMNS[2], 2 : self.COLUMNS[3], 
+		3 : self.COLUMNS[4], 
+		4 : self.COLUMNS[5],
+		5 : self.COLUMNS[6], 
+		6 : self.COLUMNS[7], 
+		7 : self.COLUMNS[8], 
+		8 : self.COLUMNS[9], 
+		9 : self.COLUMNS[10], 
+		10 : self.COLUMNS[11], 
+		11 : self.COLUMNS[12], 
+		12 : self.COLUMNS[13], 
+		13 : self.COLUMNS[14]}, inplace = True)
+		data.drop("Tabs", axis = 1, inplace = True)
 		return data
+		
