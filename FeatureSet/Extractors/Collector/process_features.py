@@ -30,26 +30,25 @@ class ProcessFeatures(DataPrep):
 		return [test for test in data.iloc[:, 4]]
 	
 	def feature_extractors(self) -> Dict:
-		return {
-			SpaceTabsExtractor().__class__.__name__ : SpaceTabsExtractor().extract_tabs(),
-			EmptyLinesExtractor().__class__.__name__ : EmptyLinesExtractor().extract_emptylines(), 
-			SpaceTabsExtractor().__class__.__name__ : SpaceTabsExtractor().extract_space(),
-			CodeLinesExtractor().__class__.__name__ : CodeLinesExtractor().extract_mean_codelines(),
-			CodeLinesExtractor().__class__.__name__ : CodeLinesExtractor().extract_sd_codelines(),
-			CodeLinesExtractor().__class__.__name__ : CodeLinesExtractor().extract_import_statements(),
-			CommentsExtractor().__class__.__name__ : CommentsExtractor().extract_comments(),
-			KeywordExtractor().__class__.__name__ : KeywordExtractor().extract_keywords(),
-			MethodsExtractor(). __class__.__name__ : MethodsExtractor().extract_methods(),
-			self.get_build.__name__ : self.get_build(),
-			self.get_test.__name__ : self.get_test(),
-			}
+		return [SpaceTabsExtractor().extract_tabs(),
+			EmptyLinesExtractor().extract_emptylines(), 
+			SpaceTabsExtractor().extract_space(),
+			CodeLinesExtractor().extract_mean_codelines(),
+			CodeLinesExtractor().extract_sd_codelines(),
+			CodeLinesExtractor().extract_import_statements(),
+			CommentsExtractor().extract_comments(),
+			KeywordExtractor().extract_keywords(),
+			MethodsExtractor().extract_methods(),
+			self.get_build(),
+			self.get_test(),
+			]
 
 	def build_dataset(self) -> None:
 		try:
 			with open(self.FILE_PATH, "w") as file:
 				with file:
 					write = csv.writer(file)
-					write.writerows(self.feature_extractors().values())
+					write.writerows(self.feature_extractors())
 		except OSError as e:
 			raise e
 	
@@ -70,4 +69,3 @@ class ProcessFeatures(DataPrep):
 		13 : self.COLUMNS[14]}, inplace = True)
 		data.drop("Tabs", axis = 1, inplace = True)
 		return data
-		

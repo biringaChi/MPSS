@@ -16,6 +16,7 @@ from sklearn.preprocessing import StandardScaler
 
 
 class HandleData(ProcessFeatures):
+	""" Prepares data for ML """
 	def __init__(self) -> None:
 		super().__init__()
 
@@ -32,6 +33,7 @@ class HandleData(ProcessFeatures):
 
 
 class RegressionModels(HandleData):
+	""" Creates an ensemble pipeline of regression models """
 	def __init__(self) -> Dict:
 		super().__init__()
 		self.MODELS =[LinearRegression(), 
@@ -58,3 +60,4 @@ class RegressionModels(HandleData):
 			result = {f"{model.__class__.__name__} - RMSE : {rmse}"}
 			results.append(result)
 		return results
+		
