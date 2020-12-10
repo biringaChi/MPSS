@@ -10,7 +10,7 @@ public class ProcessFeatures {
 	 * Collects feature extractors and builds dataset
 	 */
 	
-	private static final String DATA_DIR = "/Users/Gabriel/Documents/Research/Experimentation/ML/Models/processed_data.csv";
+	private static final String DATA_DIR = "/Users/Gabriel/Documents/Research/Experimentation/Models/processed_data.csv";
 
 	public List<List<Double>> featureExtractor() throws CsvValidationException, IOException {
 		List<List<Double>> features = new ArrayList<>();
@@ -18,12 +18,10 @@ public class ProcessFeatures {
 		ASTLiterals al = new ASTLiterals();
 		ASTLoops aloops = new ASTLoops();
 		ASTNodes an = new ASTNodes();
-
 		features.add(ac.extractConditionalFeatures());
 		features.add(al.extractLiteralFeatures());
 		features.add(aloops.extractLoopFeatures());
 		features.add(an.extractNodeFeatures());
-
 		return features;
 	}
 

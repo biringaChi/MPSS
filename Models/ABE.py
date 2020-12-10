@@ -4,7 +4,7 @@ from gensim.models import KeyedVectors
 from gensim.models import Word2Vec
 
 
-class ASTVectors:
+class ASTBasedEmbeddings:
 	"""Creates embedding vectors for ASTs"""
 
 	def get_nodes(self):
@@ -31,7 +31,7 @@ class ASTVectors:
 	
 	def save_vectors(self) -> None:
 		node_vecs = self.model().wv
-		node_vecs.save('node_vecs.wordvectors')
+		node_vecs.save("node_vecs.wordvectors")
 	
 	def assign_vectors(self) -> List[List[float]]:
 		vec_dict = {}

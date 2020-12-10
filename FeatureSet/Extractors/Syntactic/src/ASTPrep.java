@@ -22,14 +22,14 @@ public class ASTPrep {
 	 * Generates Compilation Units for ASTs
 	 */
 
-	private static final String DATA_DIR = "/Users/Gabriel/Documents";
+	private static final String DATA_DIR = "/Users/Gabriel/Documents/Research";
 
 	public String getDir() throws IOException {
 		try (Stream<Path> walk = Files.walk(Paths.get(DATA_DIR))) {
 			List<String> dataDir = walk.map(x -> x.toString())
 					.filter(x -> x.endsWith(".csv"))
 					.collect(Collectors.toList());
-			return dataDir.get(1);
+			return dataDir.get(2);
 		} 
 	} 
 

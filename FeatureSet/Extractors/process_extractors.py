@@ -1,22 +1,17 @@
 import csv
-import _specify_dir
 import pandas as pd
 from typing import Dict, List
-from FeatureSet.Extractors.data_prep import DataPrep
-from FeatureSet.Extractors.Layout.emptylines import EmptyLinesExtractor
-from FeatureSet.Extractors.Layout.spacetabs import SpaceTabsExtractor
-from FeatureSet.Extractors.Lexical.codelines import CodeLinesExtractor
-from FeatureSet.Extractors.Lexical.comments import CommentsExtractor
-from FeatureSet.Extractors.Lexical.keywords import KeywordExtractor
-from FeatureSet.Extractors.Lexical.methods import MethodsExtractor
+from FeatureSet.Extractors.prep_utils import DataPrep
+from FeatureSet.Extractors.layout import EmptyLinesExtractor, SpaceTabsExtractor
+from FeatureSet.Extractors.lexical import CodeLinesExtractor, CommentsExtractor, KeywordExtractor, MethodsExtractor
 
 
 class ProcessFeatures(DataPrep):
-	""" Collects feature extractors and builds dataset """
+	"""Collects feature extractors and builds dataset"""
 	
 	def __init__(self) -> None:
 		super().__init__()
-		self.FILE_PATH = "/Users/Gabriel/Documents/Research/Experimentation/ML/Models/processed_data.csv"
+		self.FILE_PATH = "processed_data.csv"
 		self.COLUMNS = ["Tabs", "EmptyLines", "Space", "MeanCodelines", 
 		"SDCodelines", "ImportStmts", "Comments", "Keywords", "Methods", 
 		"Build(sec)", "Test(sec)", "Conditionals", "Literals", "Loops", "Nodes"]
