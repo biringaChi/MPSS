@@ -58,8 +58,6 @@ class CommentsExtractor(DataPrep):
         super().__init__()
         self.COMMENTS_PATTERN = self.PATTERNS["comments_pattern"]
 
-    def __repr__(self) -> str: return f"Class: {self.__class__.__name__}"
-
     @property
     def get_comments_frequency(self) -> List[int]:
         comments_frequency = []
@@ -85,8 +83,6 @@ class KeywordExtractor(DataPrep):
         super().__init__()
         self.JAVA_KEYWORDS = self.PATTERNS["java_keywords"]
         self.COMMENTS_PATTERN = self.PATTERNS["comments_pattern"]
-
-    def __repr__(self) -> str: return f"Class: {self.__class__.__name__}"
 
     @property
     def del_comments(self) -> List[int]:
@@ -145,8 +141,6 @@ class WordToken(DataPrep):
     def __init__(self) -> None:
         super().__init__()
         self.WORD_PATTERN = self.PATTERNS["word_pattern"]
-
-    def __repr__(self) -> str: return f"Class: {self.__class__.__name__}"
 
     @property
     def get_word_tokens(self) -> List[int]:

@@ -139,7 +139,7 @@ class ASTLoops extends ASTPrep {
 }
 
 
-class ASTNodes extends ASTs {
+class ASTNodes extends ASTPrep {
 	/**
 	 * Extracts frequency of Nodes
 	 */ 
@@ -165,5 +165,10 @@ class ASTNodes extends ASTs {
 		}
 		Collections.replaceAll(nodes, Double.POSITIVE_INFINITY, 0.0);
 		return nodes;
+	}
+
+	public static void main(String[] args) throws IOException, CsvValidationException {
+		ASTNodes an = new ASTNodes();
+		System.out.println(an.extractNodeFeatures());
 	}
 }

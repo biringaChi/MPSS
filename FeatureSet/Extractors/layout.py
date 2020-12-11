@@ -36,8 +36,6 @@ class SpaceTabsExtractor(DataPrep):
         self.SPACE_PATTERN = self.PATTERNS["space_pattern"]
         self.TABS_PATTERN = self.PATTERNS["tabs_pattern"]
 
-    def __repr__(self) -> str: return f"Class: {self.__class__.__name__}"
-
     @property
     def get_space_frequency(self) -> List[int]:
         space_frequency = []

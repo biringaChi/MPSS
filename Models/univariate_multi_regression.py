@@ -64,10 +64,6 @@ class RegressionModels(HandleData):
 				metrics.append(metric)
 		return metrics
 
-# 	def visualize(self):
-# 		pass
-
-
-if __name__ == "__main__":
-	print(RegressionModels().__class__.__name__)
+	def visualize_model(self):
+		pass
 		
