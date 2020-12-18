@@ -1,6 +1,7 @@
 import _specify_dir
 from FeatureSet.Extractors.process_extractors import ProcessFeatures
 import numpy as np
+import matplotlib.pyplot as plt
 from typing import Dict, List, Tuple
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.linear_model import LinearRegression, SGDRegressor, Ridge, Lasso, LogisticRegression
@@ -47,13 +48,13 @@ class RegressionModels(HandleData):
 			else: models.append(model.fit(self.train_test_method()[0], self.train_test_method()[4]))
 		return models
 	
-	def evaluate_model(self) -> List[Dict]:
+	def model_evaluation(self) -> List[Dict]:
 		metrics = []
 		for model in self.fit_models():
 			metric = {}
 			if "LogisticRegression" not in model.__class__.__name__:
 				y_pred = model.predict(self.train_test_method()[1])
-				metric[f"{model.__class__.__name__}: {mean_squared_error.__name__} || {mean_absolute_error.__name__}"] = [mean_squared_error(
+				metric[model.__class__.__name__] = [mean_squared_error(
 					self.train_test_method()[3], y_pred, squared = False) * 100, mean_absolute_error(
 					self.train_test_method()[3], y_pred) * 100]
 				metrics.append(metric)
@@ -64,6 +65,21 @@ class RegressionModels(HandleData):
 				metrics.append(metric)
 		return metrics
 
-	def visualize_model(self):
-		pass
-		
+	def visualize_evaluation(self) -> None:
+		mse = []
+		mae = []
+		model = [model.__class__.__name__.replace("Pipeline", "SGDRegressor") for model in self.MODELS if "LogisticRegression" not in model.__class__.__name__]
+		for measure in self.model_evaluation():
+			for error in measure.values():
+				if type(error) is list:
+					mse.append(error[0])
+					mae.append(error[1])
+		plt.style.use("seaborn")
+		plt.plot(model, mse, alpha = 0.5, label = "Mean Squared Error (MSE)")
+		plt.plot(model, mae, alpha = 0.5, linestyle = "--", label = "Mean Absolute Error (MAE)")
+		plt.legend()
+		plt.xlabel("Model")
+		plt.ylabel("Error Rate")
+		plt.title("Model Evaluation")
+		plt.tight_layout()
+		plt.show()

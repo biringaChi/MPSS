@@ -52,7 +52,7 @@ class SpaceTabsExtractor(DataPrep):
             tabs_frequency.append(self.__len__(temp))
         return tabs_frequency
 
-    def extract_space(self) -> List[float]:
+    def extract_whitespace(self) -> List[float]:
         space_features = []
         for char_freq, space_freq in zip(self.get_character_frequency, self.get_space_frequency):
             try:
