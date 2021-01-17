@@ -6,12 +6,11 @@ from gensim.models import Word2Vec
 
 class ASTBasedEmbeddings:
 	"""Creates embedding vectors for ASTs"""
-
+	
 	def get_nodes(self):
 		try:
 			with open("ASTData.txt") as ast_file:
-				ast = ast_file.readlines()
-				return ast
+				return ast_file.readlines()
 		except FileNotFoundError as e:
 			raise e
 	
@@ -47,3 +46,4 @@ class ASTBasedEmbeddings:
 						temp.append(vec_dict.get(node))
 			node_vecs.append(temp)
 		return node_vecs
+		

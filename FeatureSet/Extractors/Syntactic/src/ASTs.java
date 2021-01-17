@@ -1,11 +1,5 @@
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -13,94 +7,15 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.printer.DotPrinter;
 import com.github.javaparser.printer.YamlPrinter;
-import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
-import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 
 
-class ASTPrep {
-	/**
-	 * Preprocesses dataset
-	 * Generates Compilation Units for ASTs
-	 */
-
-	private static final String DATA_DIR = "/Users/Gabriel/Documents/Research";
-
-	public String getDir() throws IOException {
-		try (Stream<Path> walk = Files.walk(Paths.get(DATA_DIR))) {
-			List<String> dataDir = walk.map(x -> x.toString())
-					.filter(x -> x.endsWith(".csv"))
-					.collect(Collectors.toList());
-			return dataDir.get(1);
-		} 
-	} 
-
-	public List<List<String>> readData() throws IOException, CsvValidationException {
-		List<List<String>> data = new ArrayList<>();
-		try (CSVReader reader = new CSVReader(new FileReader(getDir()));) {
-			String[] row;
-			while ((row = reader.readNext()) != null) {
-				data.add(Arrays.asList(row));
-			}
-		}
-		return data;
-	}
-
-	public List<String> getSourcecode() throws IOException, CsvValidationException {
-		List<String> sourcecode = new ArrayList<>();
-		for (List<String> row : readData()) {
-			for (int col = 2; col < row.size(); col += 4) {
-				sourcecode.add(row.get(col));
-			}
-		}
-		sourcecode.remove(0);
-		return sourcecode;
-	}
-	
-	public List<Double> getCharFreqs() throws IOException, CsvValidationException {
-		List<Double> charFreqs = new ArrayList<>();
-		for (String file : getSourcecode()) {
-			charFreqs.add((double) file.length());
-		}
-		return charFreqs;
-	}
-
-	public List<Integer> getCodewordFreqs() throws IOException, CsvValidationException {
-		List<Integer> codewordFreqs = new ArrayList<>();
-		for (String file : getSourcecode()) {
-			String[] string = file.split("\\s+");
-			codewordFreqs.add(string.length);
-		}
-		return codewordFreqs;
-	}
-
-	public List<CompilationUnit> getASTs() throws IOException, CsvValidationException {
-		Integer idx = 0;
-		List<CompilationUnit> compilationUnits = new ArrayList<>();
-		HashMap<Integer, String> uncompiled = new HashMap<>();
-		for (String file : getSourcecode()) {
-			try {
-				CompilationUnit compilationUnit = StaticJavaParser.parse(file);
-				compilationUnits.add(compilationUnit);
-			} catch (Exception e) {
-				uncompiled.put(idx, file);
-				compilationUnits.add(null);
-			}
-			idx++;
-		}
-		return compilationUnits;
-	}
-}
-
-
-class AST extends ASTPrep {
+public class ASTs extends ASTPrep {
 	/**
 	 * Processes ASTs and generates additional features
 	 * Examples: Graphs, number of nodes and node types
